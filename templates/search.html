@@ -2,11 +2,36 @@
 <html>
   <head>
     <title>Remote Jobs</title>
+    <style>
+      div {
+        margin-left: 20%;
+        margin-right: 20%;
+      }
+    </style> 
     <link rel="stylesheet" href="https://unpkg.com/mvp.css">
   </head>
   <body>
-    <h1>검색결과</h1>
-    <h3> {{searchingBy}} 을 검색할 결과입니다.
+    <header>
+    <h1 id="top">검색결과</h1>
+    <h3> " {{searchingBy}} " 을 검색할 결과입니다.<br>
+        총 {{jobsLen}} 건이 검색되었습니다.  
+    </h3>
+    <a href="/export?word={{searchingBy}}">CSV파일 내보내기</a><br><br>
+    <a href="/">&larr; 홈으로 돌아가기</a>        
+    </header>
+    <div > 
+      <a href="#bottom"> 최하단으로 이동 &darr;</a>  
+      {%for job in jobs %}
+        <hr>
+        {{job.title}}<br>
+        {{job.company}}<br>
+        {{job.location}}<br>
+        <a href="{{job.apply_link}}" target="_blank">{{job.apply_link}}</a>
+      {% endfor %}
+      <br><br>
+      <a id="bottom" href="#top"> 최상단으로 이동 &uarr;</a>
+    </div>    
   </body>
 </html>
+
 

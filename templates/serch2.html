@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Remote Jobs</title>
+    <style>
+      div {
+        margin-left: 20%;
+        margin-right: 20%;
+      }
+    </style> 
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+  </head>
+  <body>
+    <header>
+    <h1 id="top">검색결과</h1>
+    <h3> " {{searchingBy}} " 을 검색할 결과입니다.<br>
+      <a href="#so">stackoverflow</a> 사이트에선 " {{so_len}} " 건, <br>
+      <a href="#wr">weworkremotely</a> 사이트에선 " {{wr_len}} " 건, <br>
+      <a href="#rt">remoteok</a> 사이트에선 " {{rt_len}} " 이 검색되어,<br>
+      총 " {{so_len+wr_len+rt_len}} " 건이 검색 되었습니다. 
+    </h3>
+    <a href="/export?word={{searchingBy}}">CSV파일 내보내기</a><br><br>
+    <a href="/">&larr; 홈으로 돌아가기</a>    
+    </header>
+    <header>
+      <h1 id="so">stackoverflow</h1><a href="#top"> 상단으로 이동 &uarr;</a>
+    </header>
+    <div > 
+      {%for job in jobs %}
+        <hr>
+        {{job.title}}<br>
+        {{job.company}}<br>
+        {{job.location}}<br>
+        <a href="{{job.apply_link}}" target="_blank">{{job.apply_link}}</a>
+      {% endfor %}
+    </div>      
+    <br><br><br>
+    <header>
+      <h1 id="wr">weworkremotely</h1><a href="#top"> 상단으로 이동 &uarr;</a>
+    </header> 
+    <div > 
+      {%for job in wr_jobs %}
+        <hr>
+        {{job.title}}<br>
+        {{job.company}}<br>
+        {{job.location}}<br>
+        <a href="{{job.apply_link}}" target="_blank">{{job.apply_link}}</a>
+      {% endfor %}
+    </div>
+    <br><br><br>
+    <header>
+      <h1 id="rt">remoteok</h1><a href="#top"> 상단으로 이동 &uarr;</a>
+    </header> 
+    <div> 
+      {%for job in rt_jobs %}
+        <hr>
+        {{job.title}}<br>
+        {{job.company}}<br>
+        {{job.location}}<br>
+        <a href="{{job.apply_link}}" target="_blank">{{job.apply_link}}</a>
+      {% endfor %}
+    </div>
+  </body>
+</html>
+
+
